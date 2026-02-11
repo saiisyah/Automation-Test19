@@ -2,8 +2,10 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.time.Duration;
 
 public class HomePage {
 
@@ -11,11 +13,14 @@ public class HomePage {
 
     By bikeLightItem = By.xpath("//*[@id=\"item_0_title_link\"]/div");
 
-    public homePage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void validasiBikeLightDisplayed(){
-        assertTrue(driver.findElement(bikeLightItem).isDisplayed());
+    public boolean validasiBikeLightDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(bikeLightItem)
+        ).isDisplayed();
     }
 }

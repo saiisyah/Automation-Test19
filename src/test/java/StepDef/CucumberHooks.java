@@ -1,4 +1,5 @@
-import StepDef.BaseTest;
+package StepDef;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
@@ -11,6 +12,6 @@ public class CucumberHooks  extends BaseTest {
 
     @After
     public void afterTest() {
-        driver.close();
+        driver.quit();
     }
 }

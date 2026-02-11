@@ -1,36 +1,18 @@
 package StepDef;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+import pages.LoginPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class MyStepdefs {
+public class LoginStepDef extends BaseTest{
 
-    WebDriver driver;
+    LoginPage loginPage;
 
-    @Before
-    public void beforeTest() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-    }
-
-    @After
-    public void afterTest() {
-        driver.quit();
-    }
 
     @io.cucumber.java.en.Given("user already on the login page")
     public void userAlreadyOnTheLoginPage() {
@@ -40,13 +22,13 @@ public class MyStepdefs {
     @io.cucumber.java.en.And("user input email or username {string}")
     public void userInputEmailOrUsername(String username) {
         By inputUsername = By.id("user-name");
-        driver.findElement(inputUsername).sendKeys("username");
+        driver.findElement(inputUsername).sendKeys(username);
     }
 
     @io.cucumber.java.en.And("user input password {string}")
     public void userInputPassword(String password) {
         By inputPassword = By.id("password");
-        driver.findElement(inputPassword).sendKeys("password");
+        driver.findElement(inputPassword).sendKeys(password);
     }
 
     @io.cucumber.java.en.When("user clicked login button")
@@ -68,12 +50,21 @@ public class MyStepdefs {
         assertTrue(driver.getCurrentUrl().contains("https://www.saucedemo.com/"));
     }
 
-    @And("user see error message")
-    public void userSeeErrorMessage() {
-    }
-
     @And("user see error message {string}")
     public void userSeeErrorMessage(String usernameOrPasswordIsInvalid) {
         assertTrue(driver.getPageSource().contains(usernameOrPasswordIsInvalid));
     }
+
+    @And("user input invalid username {string}")
+    public void userInputInvalidUsername(String username) {
+        By inputUsername = By.id("user-name");
+        driver.findElement(inputUsername).sendKeys(username);
+    }
+
+    @Then("user cannot logged in because {string}")
+    public void userCannotLoggedInBecause(String reason) {
+        LoginPage loginPage = new LoginPage(driver);
+        assertTrue(loginPage.isOnLoginPage());
+    }
 }
+

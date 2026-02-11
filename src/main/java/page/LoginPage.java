@@ -11,7 +11,7 @@ public class LoginPage {
     By inputPassword = By.id("password");
     By loginButton = By.id("login-button");
 
-    public loginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -25,5 +25,15 @@ public class LoginPage {
 
     public void clickButton(){
         driver.findElement(loginButton).click();
+    }
+
+    public void login(String user, String pass) {
+        InputUsername(user);
+        InputPassword(pass);
+        clickButton();
+    }
+
+    public boolean isLoginButtonDisplayed() {
+        return driver.findElement(loginButton).isDisplayed();
     }
 }
