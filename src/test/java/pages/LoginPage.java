@@ -1,10 +1,7 @@
 package pages;
 
-import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import static org.junit.Assert.assertTrue;
 
 public class LoginPage {
     WebDriver driver;
