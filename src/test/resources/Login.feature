@@ -10,7 +10,7 @@ Feature: Login
     When user clicked login button
     Then user successfully on home page
 
-    @invalid-login
+  @invalid-login
   Scenario: Login using invalid email or username and password
     Given user already on the login page
     And user input email or username "standard_user"
