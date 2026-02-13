@@ -34,6 +34,10 @@ public class LoginPage {
         return driver.getCurrentUrl().contains("https://www.saucedemo.com/");
     }
 
+    public boolean isOnDashboard() {
+        return driver.getCurrentUrl().contains("inventory");
+    }
+
     public boolean isErrorMessagedDisplayed(String errorMessage) {
         return driver.getPageSource().contains(errorMessage);
     }

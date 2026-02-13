@@ -33,7 +33,7 @@
 
         @Then("user successfully on Dashboard")
         public void userSuccessfullyOnDashboard() {
-            assertTrue(loginPage.isOnLoginPage());
+            assertTrue(loginPage.isOnDashboard());
         }
 
         @Then("user is still on login page")
