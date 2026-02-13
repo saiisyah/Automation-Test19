@@ -14,8 +14,6 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -50,6 +48,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_DIR: reports
+          publish_dir: reports
     
         
