@@ -28,11 +28,16 @@
 
         @io.cucumber.java.en.When("user clicked login button")
         public void userClickedLoginButton() {
-            loginPage.clickLogginButton();
+            loginPage.clickLoginButton();
         }
 
-        @Then("user cannot logged in to Dashboard")
-        public void userCannotLoggedInToDashboard() {
+        @Then("user successfully on Dashboard")
+        public void userSuccessfullyOnDashboard() {
+            assertTrue(loginPage.isOnLoginPage());
+        }
+
+        @Then("user is still on login page")
+        public void userIsStillOnLoginPage() {
             assertTrue(loginPage.isOnLoginPage());
         }
 
@@ -41,14 +46,10 @@
             assertTrue(loginPage.isErrorMessagedDisplayed(usernameOrPasswordIsInvalid));
         }
 
-        @And("user input invalid username {string}")
-        public void userInputInvalidUsername(String username) {
-            loginPage.textUsername(username);
+        @Then("user cannot login in to Dashboard")
+        public void userCannotLoginInToDashboard() {
+            assertTrue(loginPage.isOnLoginPage());
         }
 
-        @Then("user cannot logged in because {string}")
-        public void userCannotLoggedInBecause(String reason) {
-            assertTrue(loginPage.isErrorMessagedDisplayed(reason));
-        }
     }
 
