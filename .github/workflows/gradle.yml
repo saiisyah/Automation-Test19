@@ -40,8 +40,8 @@ jobs:
         uses: actions/upload-artifact@v6.0.0
         if: always()
         with:
-            name: api-test-report
-            path: build/reports/tests/test
+          name: api-test-report
+          path: build/reports/tests/test
 
       - name: Artifacts Test Result
         uses: actions/upload-artifact@v6.0.0
